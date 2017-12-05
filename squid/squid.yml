@@ -1,0 +1,26 @@
+---
+   - hosts: squid
+     remote_user: root
+
+     tasks:
+
+     - name: apt update
+       apt:
+         update_cache: yes
+
+     - name: apt install squid3
+       apt:
+         name: squid3
+         state: present
+         install_recommends: yes
+
+     - name: copy config
+       template:
+         src: squid3.conf.j2
+         dest: /etc/squid3/squid.conf
+
+     - name: run squid
+       service:
+         name: squid3
+         state: restarted
+         enabled: yes
