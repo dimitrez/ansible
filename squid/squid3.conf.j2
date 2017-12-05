@@ -11,7 +11,6 @@ refresh_pattern ^gopher: 1440 0% 1440
 refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
 refresh_pattern . 0 20% 4320
  
-acl manager proto cache_object
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 acl news src 80.82.209.77/32 51.15.132.5/32
@@ -31,7 +30,6 @@ acl Safe_ports port 591 # filemaker
 acl Safe_ports port 777 # multiling http
 acl CONNECT method CONNECT
  
-http_access allow manager localhost
 http_access allow news
  
 http_access deny !Safe_ports
